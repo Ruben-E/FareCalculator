@@ -58,6 +58,7 @@ class TransitCalculator {
                 lowestPrice = prices[index];
             }
         }
+        
         if (lowestPrice == prices[0]) {
             ticketName = "Pay Per Day-ticket";
             amountOfTickets = numberOfIndividualRides;
