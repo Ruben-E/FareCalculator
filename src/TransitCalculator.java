@@ -52,18 +52,14 @@ class TransitCalculator {
         int amountOfTickets = 0;
         String ticketName = "";
 
-
-        for (int index = 0; index < prices.length; index++) {
-            if (prices[index] < lowestPrice) {
+        for (int index = 1; index < prices.length; index++) {
+            if (prices[index] <= lowestPrice) {
                 lowestPrice = prices[index];
             }
         }
-        
-        if (lowestPrice == prices[0]) {
-            ticketName = "Pay Per Day-ticket";
-            amountOfTickets = numberOfIndividualRides;
-        } else if (lowestPrice == prices[1]) {
-            ticketName = "7 Days Unlimited Rides-ticket";
+
+        if (lowestPrice == prices[1]) {
+            ticketName = "'7 Days Unlimited Rides-ticket'";
                 if (numberOfDaysUsingTransitSystem <= 7) {
                     amountOfTickets = 1;
                 } else if (numberOfDaysUsingTransitSystem <= 14) {
@@ -72,10 +68,13 @@ class TransitCalculator {
                     amountOfTickets = 3;
                 }
         } else if (lowestPrice == prices[2]) {
-            ticketName = "30 Days Unlimited Rides-ticket";
+            ticketName = "'30 Days Unlimited Rides-ticket'";
             amountOfTickets = 1;
+        } else if (lowestPrice == prices[0]) {
+            ticketName = "'Pay Per Ride-ticket'";
+            amountOfTickets = numberOfIndividualRides;
         }
-        return "You should get " + amountOfTickets + "x the " + ticketName + " of $ " + df.format(lowestPrice) + " per ride.";
+        return "You should get " + amountOfTickets + "x the " + ticketName + " with a price of $ " + df.format(lowestPrice) + " per ride.";
     }
 
     public static void main(String[] args) {
