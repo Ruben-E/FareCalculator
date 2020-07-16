@@ -4,6 +4,8 @@ import java.util.Scanner;
 class TransitCalculator {
     int numberOfDaysUsingTransitSystem;
     int numberOfIndividualRides;
+    int age;
+    String disabilities;
 
     private final static DecimalFormat df = new DecimalFormat("0.00");
 
@@ -11,9 +13,19 @@ class TransitCalculator {
     double unlimitedRides7Days = 33.00;
     double unlimitedRides30Days = 127.00;
 
-    public TransitCalculator(int numberOfDaysUsingTransitSystem, int numberOfIndividualRides) {
+    public TransitCalculator(int numberOfDaysUsingTransitSystem, int numberOfIndividualRides, int age, String disabilities) {
         this.numberOfDaysUsingTransitSystem = numberOfDaysUsingTransitSystem;
         this.numberOfIndividualRides = numberOfIndividualRides;
+        this.age = age;
+        this.disabilities = disabilities;
+    }
+
+    public void reducedFare() {
+        if (age >= 65 || disabilities.equalsIgnoreCase("yes")) {
+            payPerRide = 1.35;
+            unlimitedRides7Days = 16.50;
+            unlimitedRides30Days = 63.50;
+        }
     }
 
     public double unlimited7Price() {
@@ -79,7 +91,10 @@ class TransitCalculator {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        TransitCalculator transitCalculator = new TransitCalculator(scanner.nextInt(), scanner.nextInt());
+        TransitCalculator transitCalculator = new TransitCalculator(scanner.nextInt(), scanner.nextInt(), scanner.nextInt(), scanner.next());
+
+        transitCalculator.reducedFare();
+
         if (transitCalculator.numberOfDaysUsingTransitSystem > 30) {
             System.out.println("This is not possible. Please select amount of days with a max of 30 days.");
         } else {
