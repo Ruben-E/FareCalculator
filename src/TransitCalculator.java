@@ -93,7 +93,7 @@ class TransitCalculator {
 
         TransitCalculator transitCalculator = new TransitCalculator(numberOfDaysUsingTransitSystem, numberOfIndividualRides, age, disabilities);
 
-        if (transitCalculator.numberOfDaysUsingTransitSystem > 30) {
+        if (numberOfDaysUsingTransitSystem > 30) {
             System.out.println("This is not possible. Please select amount of days with a max of 30 days.");
         } else {
             String result = transitCalculator.getBestFare();
